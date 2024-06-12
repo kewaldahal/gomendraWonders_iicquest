@@ -5,7 +5,7 @@ const chatController = {
 
         // res.status(200).json({message: "Working"})
     },
-    sendChat: (req, res)=> {
+    sendMsg: (req, res)=> {
         const {email, password} = req.body;
 
         // auth

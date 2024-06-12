@@ -9,5 +9,4 @@ router.post("/", blogController.postBlog);
 router.patch("/:id", blogController.updateBlog);
 router.delete("/:id", blogController.deleteBlog);
 
-
 export default router;

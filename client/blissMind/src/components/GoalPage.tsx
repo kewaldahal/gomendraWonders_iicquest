@@ -9,6 +9,7 @@ interface GoalPageParams {
 
 const MAX_TIME_MINUTES = 120; // Maximum allowed time in minutes
 
+
 const GoalPage: React.FC = () => {
     const {id} = useParams<GoalPageParams>();
     const goal = goals.find(goal => goal.id === parseInt(id));

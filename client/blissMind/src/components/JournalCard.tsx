@@ -2,7 +2,7 @@ import {AiOutlineEdit} from "react-icons/ai";
 
 const JournalCard = () => {
     return (
-        <div className={`max-w-[650px]`}>
+        <div className={``}>
             <div className={`flex items-center gap-3`}>
                 <p className={`font-medium`}>{new Date().toDateString()}</p>
                 <button

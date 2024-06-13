@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 
 const Navbar = () => {
     return (
-        <div className={`flex sticky top-0 bg-white justify-between py-3 border-b px-10 items-center`}>
+        <div className={`flex sticky top-0 bg-white z-[999] justify-between py-3 border-b px-10 items-center`}>
             <div className={`flex items-center gap-8`}>
                 <div className={`text-2xl font-semibold`}>
                     <img src={logo} className={`h-16 rounded-full`} alt=""/>

@@ -1,20 +1,20 @@
-import SessionCard from "./SessionCard.tsx";
+import {tutorials} from '../utils/tutorials';
+import SessionCard from "./SessionCard";
 
-const SessionsCards = () => {
+const SessionsCards: React.FC = () => {
     return (
         <div>
-            <p className={`font-semibold text-xl mb-6`}>Start self help sessions.</p>
-            <div>
-
+            <p className="font-semibold text-xl mb-6">Start self help sessions.</p>
+            <div className="grid grid-cols-4 gap-8">
+                {tutorials.map((tutorial) => (
+                    <SessionCard
+                        key={tutorial.id}
+                        id={tutorial.id}
+                        title={tutorial.title}
+                        category={tutorial.category}
+                    />
+                ))}
             </div>
-            <div className={`grid grid-cols-4 gap-8`}>
-                <SessionCard/>
-                <SessionCard/>
-                <SessionCard/>
-                <SessionCard/>
-                <SessionCard/>
-            </div>
-
         </div>
     );
 };

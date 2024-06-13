@@ -12,6 +12,9 @@ import Journals from "./components/Journals.tsx";
 import Login from "./pages/Login.tsx";
 import Signup from "./pages/Signup.tsx";
 import SessionPage from "./components/SessionPage.tsx";
+import Goals from "./components/Goals.tsx";
+import GoalPage from "./components/GoalPage.tsx";
+import Blogs from "./pages/Blog.tsx";
 // import {BiMessageSquareDetail} from "react-icons/bi";
 // import {useState} from "react";
 
@@ -26,7 +29,10 @@ function App() {
                 <Route path="/blog/:id" element={<BlogPage/>}/>
                 <Route path="/chat" element={<Chat/>}/>
                 <Route path="/login" element={<Login/>}/>
+                <Route path="/blogs" element={<Blogs/>}/>
                 <Route path="/signup" element={<Signup/>}/>
+                <Route path="/mygoals" element={<Goals/>}/>
+                <Route path="/goal/:id" element={<GoalPage/>}/>
                 <Route path="/session/:id" element={<SessionPage/>}/>
                 <Route path="/confessions" element={<Confessions/>}/>
                 <Route path="/profile" element={<ProfilePage/>}>

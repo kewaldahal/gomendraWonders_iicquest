@@ -1,7 +1,7 @@
 const Hero = () => {
     return (
         <div>
-            <div className={`grid grid-cols-2 my-14 h-[80vh] bg-gradient-to-b rounded-lg from-white to-cyan-100`}>
+            <div className={`grid md:grid-cols-2 my-14 h-[80vh] bg-gradient-to-b rounded-lg from-white to-cyan-100`}>
 
 
                 <div className={`flex flex-col justify-center px-20`}>

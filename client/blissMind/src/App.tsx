@@ -37,7 +37,7 @@ function App() {
                 <Route path="/confessions" element={<Confessions/>}/>
                 <Route path="/profile" element={<ProfilePage/>}>
                     <Route path={``} element={<Journals/>}/>
-                    <Route path={`confessions`} element={<SessionsCards/>}/>
+                    <Route path={`confessions`} element={<Confessions/>}/>
                 </Route>
                 <Route path={`/*`} element={<NotFound/>}/>
             </Routes>

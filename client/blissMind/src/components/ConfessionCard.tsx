@@ -1,10 +1,11 @@
 import {useState} from "react";
-import {AiOutlineClose, AiOutlineComment, AiOutlineHeart} from "react-icons/ai";
+import {AiOutlineClose, AiOutlineComment, AiOutlineEdit, AiOutlineHeart} from "react-icons/ai";
 import Confession from "./Confession.tsx";
 import {IoHeartDislikeOutline} from "react-icons/io5";
 
 const ConfessionCard = () => {
     const [openPost, setOpenPost] = useState(false)
+    const [editPost, setEditPost] = useState(false)
     return (
         <>
             <div onClick={() => {
@@ -20,6 +21,7 @@ const ConfessionCard = () => {
                             <p className={`text-sm font-semibold text-gray-500`}>an hour ago</p>
                         </div>
                     </div>
+                    
 
                 </div>
                 <div>
@@ -79,7 +81,7 @@ const ConfessionCard = () => {
                 </div>
             </div>
             {openPost &&
-                <div className={`fixed inset-0 w-full pb-8 overflow-y-scroll backdrop-blur h-full bg-gray-600/30`}>
+                <div className={`py-20 fixed inset-0 w-full pb-8 overflow-y-scroll backdrop-blur h-full bg-gray-600/30`}>
                     <div className={`flex justify-end sticky top-0`}>
                         <div onClick={() => {
                             setOpenPost(false)
@@ -90,7 +92,8 @@ const ConfessionCard = () => {
 
                     </div>
                     <Confession/>
-                </div>}
+                </div>
+            }
         </>
     );
 };

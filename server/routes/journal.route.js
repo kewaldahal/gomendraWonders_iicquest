@@ -5,7 +5,7 @@ const router = Router();
 
 router.get('/',fetchuser, journalController.getJournals);
 router.get('/:id',journalController.getSingleJournal);
-router.post('/',journalController.postJournal);
+router.post('/', fetchuser,journalController.postJournal);
 router.patch('/:id',journalController.updateJournal);
 router.delete('/:id',journalController.deleteJournal);
 

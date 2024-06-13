@@ -51,6 +51,8 @@ const userController = {
 				sameSite: "None"
 			});
 
+			console.log(user_token)
+
 			return res.status(200).json({
 				message: `successfully created a user named ${fullName}`,
 			});

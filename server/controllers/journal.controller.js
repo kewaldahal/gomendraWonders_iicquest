@@ -5,7 +5,7 @@ const journalController = {
     getJournals: async (req, res) => {
         try {
             // middleware will put userId in reqBody
-            // const {userId} = req.body;
+            const userId = req.userId;
             const data = await Journal.findById(userId);
             return res.status(200).json({ data });
         } catch (error) {

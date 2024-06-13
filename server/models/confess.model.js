@@ -15,14 +15,19 @@ const commentSchema = new Schema({
     text: {
         type: String,
         require: true,
-        maxlength: 3000
+        maxlength: 1000
     }
 })
 
 const confessSchema = new Schema({
+    userId: {
+        type: Types.ObjectId,
+        ref: "User",
+    },
 	description: {
 		type: String,
-        require: true
+        require: true,
+        maxlength: 3500
 	},
 
     isanonymous: {

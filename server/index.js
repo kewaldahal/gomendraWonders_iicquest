@@ -14,7 +14,25 @@ import connectDB from './config/dbConfig.js';
 
 env.config();
 const app = express();
-app.use(cors());
+
+// TEMP: for client side testing and allowing all origin. TODO: Remove in Production
+const allowCors = (req, res, next) => {
+    const origin = req.headers.origin;
+    res.header("Access-Control-Allow-Origin", origin);
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+    res.header(
+        "Access-Control-Allow-Headers",
+        "Origin, X-Requested-With, Content-Type, Accept"
+    );
+    next();
+};
+app.use(allowCors);
+
+// app.use(cors({
+//     origin: "http://localhost:3001",
+//     request: ["POST", "GET", "PATCH", "DELETE"]
+// }));
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));

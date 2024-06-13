@@ -2,6 +2,11 @@ import mongoose, { Types } from "mongoose";
 const {Schema, models, model} = mongoose
 
 const commentSchema = new Schema({
+    commenterId: {
+        type: Types.ObjectId,
+        required: true,
+        ref: "User",
+    },
     username: {
         type: String,
         require: true
@@ -39,7 +44,7 @@ const confessSchema = new Schema({
     comment: [
         {
             type: Types.ObjectId,
-            ref: "Comments"
+            ref: "Comment"
         }
     ]
 });

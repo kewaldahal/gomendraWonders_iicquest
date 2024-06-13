@@ -1,18 +1,23 @@
 import mongoose from "mongoose";
-const {Schema, models, model} = mongoose
+const { Schema, models, model, Types } = mongoose
 
 const blogSchema = new Schema({
+	userId: {
+		type: Types.ObjectId,
+		require: true,
+		ref: "User"
+	},
 	title: {
-        type: String,
-        require: true
-    },
+		type: String,
+		require: true
+	},
 	description: {
 		type: String,
-        require: true
+		require: true
 	},
 
-    // Picture will be in future
-    // pictureUrl: {
+	// Picture will be in future
+	// pictureUrl: {
 	// 	type: {
 	// 		path: {
 	// 			type: String,

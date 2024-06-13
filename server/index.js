@@ -1,11 +1,13 @@
 import express from 'express';
 import env from 'dotenv';
+import cookieParser from 'cookie-parser';
 
 // route
 import blogRoute from './routes/blog.route.js'
 import authRoute from './routes/user.route.js'
 import chatRoute from './routes/chat.route.js';
 import confessRoute from './routes/confess.route.js';
+import journalRoute from "./routes/journal.route.js"
 
 import connectDB from './config/dbConfig.js';
 
@@ -15,12 +17,16 @@ const app = express();
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
+app.use(cookieParser());
 
 // route handlers
 app.use("/blogs", blogRoute);
 app.use("/confess", confessRoute);
 app.use("/auth", authRoute);
 app.use('/aichat', chatRoute)
+app.use("/journal", journalRoute)
+
+app.use('/auth', authRoute);
 
 const PORT = process.env.PORT || 8080;
 

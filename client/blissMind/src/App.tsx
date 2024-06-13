@@ -21,6 +21,8 @@ import UpdateConfession from "./components/subComponents/UpdateConfession.tsx";
 import { useAuth } from './Auth/AuthProvider.tsx';
 import React from 'react';
 import {CreateJournal} from "./components/subComponents/CreateJournal.tsx";
+import CreateBlog from "./pages/CreateBlog.tsx";
+import Footer from "./components/Footer.tsx";
 
 
 function App() {
@@ -66,6 +68,7 @@ function App() {
                 <Route path="/blogs" element={<ProtectedRoute element={<Blogs />} />} />
                 <Route path="/edit/:id" element={<ProtectedRoute element={<UpdateConfession />} />} />
                 <Route path="/mygoals" element={<ProtectedRoute element={<Goals />} />} />
+                <Route path="/blog/create" element={<ProtectedRoute element={<CreateBlog />} />} />
                 <Route path="/goal/:id" element={<ProtectedRoute element={<GoalPage />} />} />
                 <Route path="/journal/create" element={<ProtectedRoute element={<CreateJournal />} />} />
                 <Route path="/session/:id" element={<ProtectedRoute element={<SessionPage />} />} />
@@ -78,6 +81,7 @@ function App() {
             </Routes>
             {/*{openModal && <ChatModal setOpenModal={setOpenModal}/>}*/}
             {/*<div className={`fixed p-5 text-3xl bg-gray-100 shadow-lg bottom-10 right-10 cursor-pointer rounded-full`} onClick={()=> setOpenModal(true)}><BiMessageSquareDetail/></div>*/}
+            <Footer/>
         </>
     )
 }

@@ -6,7 +6,6 @@ import {Link} from "react-router-dom";
 
 
 const Journals = () => {
-    const [createJournal, setCreateJournal] = useState(false)
     return (
         <div className={`w-[900px] mx-auto]`}>
 
@@ -14,9 +13,7 @@ const Journals = () => {
                 <Link to={"/journal/create"}>
                 <div className={`flex gap-3 items-center mb-5`}>
                     <p className={`font-semibold`}>Recent Journals</p>
-                    <button onClick={() => {
-                        setCreateJournal(true)
-                    }}
+                    <button
                             className={`flex items-center gap-2 px-2 py-2 border-2 border-blue-500 hover:bg-blue-100 transition text-sm font-semibold text-gray-700 rounded-full`}>
                         <AiOutlinePlus/>New
                         Journal

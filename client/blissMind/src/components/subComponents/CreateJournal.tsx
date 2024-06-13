@@ -1,13 +1,17 @@
 import {FormEvent, useState} from "react";
 import {serverApi} from "../../Auth/AuthProvider.tsx";
+import {useNavigate} from "react-router-dom";
+
 
 export const CreateJournal = () => {
+    const navigate = useNavigate();
     const [description, setDescription] = useState("");
     const handleSubmit = async (e: FormEvent) => {
         // handle submission
         e.preventDefault();
         await serverApi.post("/journal", {description})
-        console.log("Added")
+        navigate("/profile")
+
     }
 
     return (

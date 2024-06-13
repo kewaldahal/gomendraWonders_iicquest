@@ -1,5 +1,6 @@
-import {FormEvent, useState} from "react";
-import {Link, useNavigate} from "react-router-dom";
+import { ChangeEvent, FormEvent, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { serverApi } from "../Auth/AuthProvider.tsx";
 
 const Signup = () => {
     const [formData, setFormData] = useState({
@@ -7,14 +8,15 @@ const Signup = () => {
         password: "",
         fullName: "",
         gender: "",
-        age: ""
+        age: "",
+        type: ""
     });
 
-    const navigate = useNavigate(); // useNavigate hook to programmatically navigate
+    const navigate = useNavigate();
 
     // Handle input change
-    const handleChange = (e: ChangeType<HTMLInputElement>) => {
-        const {name, value} = e.target;
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+        const { name, value } = e.target;
         setFormData(prevData => ({
             ...prevData,
             [name]: value
@@ -22,11 +24,15 @@ const Signup = () => {
     };
 
     // Handle form submit
-    const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // Example of what might be done after form submission:
-        console.log('Form data submitted:', formData);
-        navigate("/user"); // Redirect after form submission
+        try {
+            const response = await serverApi.post("/auth/signup", formData);
+            console.log('Form data submitted:', formData);
+            // navigate("/user");
+        } catch (error) {
+            console.error('Error during sign up:', error);
+        }
     };
 
     return (
@@ -34,32 +40,23 @@ const Signup = () => {
             <div className={`relative`}>
                 <div className={`h-full p-10 gap-10 flex flex-col absolute inset-0`}>
                     <div className={`w-32 h-56 relative top-96 bg-red-200 rounded-full`}></div>
-                    <div
-                        className={`w-72 h-72 absolute top-[400px] right-52 border-4 border-blue-400 rounded-full`}></div>
-                    <div
-                        className={`h-[200px] bg-yellow-400 w-[85%] relative left-28 bottom-64 rounded-full overflow-y-hidden`}>
+                    <div className={`w-72 h-72 absolute top-[400px] right-52 border-4 border-blue-400 rounded-full`}></div>
+                    <div className={`h-[200px] bg-yellow-400 w-[85%] relative left-28 bottom-64 rounded-full overflow-y-hidden`}>
                     </div>
-                    <div className={`h-[32%]  w-full relative left-`}></div>
+                    <div className={`h-[32%] w-full relative left-`}></div>
                 </div>
                 <div className={`h-full p-10 gap-10 flex flex-col`}>
-                    <div
-                        className={`h-[200px]  w-[85%] relative left-32 rounded-full overflow-y-hidden`}>
-                        <img className={`w-full h-full object-cover start`}
-                             src="https://images.pexels.com/photos/5846282/pexels-photo-5846282.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
-                             alt=""/>
+                    <div className={`h-[200px] w-[85%] relative left-32 rounded-full overflow-y-hidden`}>
+                        <img className={`w-full h-full object-cover start`} src="https://images.pexels.com/photos/5846282/pexels-photo-5846282.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt=""/>
                     </div>
-                    <div className={`h-fit  w-full relative`}>
+                    <div className={`h-fit w-full relative`}>
                         <div className={`flex flex-col gap-2`}>
                             <p className={`text-3xl font-black`}>Signup and Get Started.</p>
-                            <p className={`font-medium text-gray-700`}>Find affordable workers near you for a
-                                variety of tasks. Get the help you need quickly and efficiently.</p>
+                            <p className={`font-medium text-gray-700`}>Find affordable workers near you for a variety of tasks. Get the help you need quickly and efficiently.</p>
                         </div>
                     </div>
-                    <div
-                        className={`h-[32%] bg-green-600 w-[55%] self-end relative left-12 rounded-full overflow-hidden`}>
-                        <img className={`w-full h-full object-cover object-top`}
-                             src="https://www.scoutnetworkblog.com/wp-content/uploads/2018/11/Plumber-Sink-201709-003.jpg"
-                             alt=""/>
+                    <div className={`h-[32%] bg-green-600 w-[55%] self-end relative left-12 rounded-full overflow-hidden`}>
+                        <img className={`w-full h-full object-cover object-top`} src="https://www.scoutnetworkblog.com/wp-content/uploads/2018/11/Plumber-Sink-201709-003.jpg" alt=""/>
                     </div>
                 </div>
             </div>
@@ -111,6 +108,13 @@ const Signup = () => {
                         />
                     </div>
                     <div className={`flex flex-col`}>
+                        <label className={`text-sm font-medium`}>User Type:</label>
+                        <select name="type" value={formData.type} onChange={handleChange} className={`border border-gray-300 p-2 rounded outline-none`} required>
+                            <option value="student">Student</option>
+                            <option value="professional">Professional</option>
+                        </select>
+                    </div>
+                    <div className={`flex flex-col`}>
                         <label className={`text-sm font-medium`}>Age:</label>
                         <input
                             type="text"
@@ -131,11 +135,6 @@ const Signup = () => {
                 <p className={`text-center mt-6`}>
                     Already a user? <Link to={"/login"} className={`text-blue-600`}>Login</Link>
                 </p>
-            </div>
-            <div className={`relative`}>
-                <div className={`h-full p-10 gap-10 flex flex-col absolute inset-0`}>
-                    {/* Additional page elements can be included here */}
-                </div>
             </div>
         </div>
     );

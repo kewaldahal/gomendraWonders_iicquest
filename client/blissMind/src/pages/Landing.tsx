@@ -9,8 +9,8 @@ const Landing = () => {
         <div className={`container mx-auto`}>
             <Hero/>
             <Feelings/>
-            <SessionsCards/>
             <Subscription/>
+            <SessionsCards/>
             <BlogCards/>
         </div>
     );

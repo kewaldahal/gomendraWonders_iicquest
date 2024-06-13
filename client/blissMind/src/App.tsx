@@ -23,6 +23,7 @@ import React from 'react';
 import {CreateJournal} from "./components/subComponents/CreateJournal.tsx";
 import CreateBlog from "./pages/CreateBlog.tsx";
 import Footer from "./components/Footer.tsx";
+import BlogCards from "./components/BlogCards.tsx";
 
 
 function App() {
@@ -65,7 +66,8 @@ function App() {
                 <Route path="/" element={<Landing />} />
                 <Route path="/blog/:id" element={user ? <BlogPage /> : <Login login={login} />} />
                 <Route path="/chat" element={<ProtectedRoute element={<Chat />} />} />
-                <Route path="/blogs" element={<ProtectedRoute element={<Blogs />} />} />
+                <Route path="/blogs" element={<ProtectedRoute element={<BlogCards />} />} />
+                <Route path="/blog/:id" element={<ProtectedRoute element={<BlogPage />} />} />
                 <Route path="/edit/:id" element={<ProtectedRoute element={<UpdateConfession />} />} />
                 <Route path="/mygoals" element={<ProtectedRoute element={<Goals />} />} />
                 <Route path="/blog/create" element={<ProtectedRoute element={<CreateBlog />} />} />

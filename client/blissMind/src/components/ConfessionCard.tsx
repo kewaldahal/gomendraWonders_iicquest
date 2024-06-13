@@ -18,12 +18,12 @@ const ConfessionCard = ({ confession }) => {
                         <img src="https://avatar.iran.liara.run/public" className={`w-14 h-14 bg-red-200 rounded-full`} alt="" />
                         <div className={`flex flex-col gap-0`}>
                             <p className={`font-semibold`}>{confession.isanonymous ? "Anonymous" : confession.fullName}</p>
-                            <p className={`text-sm font-semibold text-gray-500`}>{confession.createdAt}</p>
+                            <p className={`text-sm font-semibold text-gray-500`}>{confession.createdAt.split("T")[0]}</p>
                         </div>
                     </div>
                 </div>
                 <div>
-                    <p className={` text-gray-700 line-clamp-5`}>{confession.description}</p>
+                    <p className={` text-gray-700 line-clamp-5 pt-3`}>{confession.description}</p>
                     <div className={`flex mt-5 gap-3`}>
                         <div className={`flex items-center gap-2`}>
                             <AiOutlineHeart className={`text-lg`} />

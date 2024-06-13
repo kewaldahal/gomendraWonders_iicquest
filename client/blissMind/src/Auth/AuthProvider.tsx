@@ -5,7 +5,7 @@ import axios, { isAxiosError } from 'axios';
 export const serverApi = axios.create({
   baseURL: 'http://localhost:8080',
   timeout: 1000,
-  withCredentials: true
+  // withCredentials: true
 })
 
 interface User {
@@ -43,10 +43,14 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
 
   const login = async (email: string, password: string) => {
     try {
-      await serverApi.post('/auth/login', { email, password }, { withCredentials: true });
+      console.log(email, password);
+      const res = await serverApi.post('/auth/login', { email, password }, { withCredentials: true });
+      console.log(res);
       const response = await serverApi.get('/auth', { withCredentials: true });
+      console.log(response)
       setUser(response.data.data);
     } catch (error) {
+      console.log(error)
       console.error('Login failed');
     }
   };

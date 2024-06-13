@@ -20,9 +20,11 @@ const confessController = {
         }
     },
     postConfession: async (req, res) => {
+        const userId = req.userId;
+
         try {
-            const { description, isanonymous } = req.body;
-            const newConfess = new Confess({ description, isanonymous });
+            const { description, isanonymous} = req.body;
+            const newConfess = new Confess({ description, isanonymous, userId });
             await newConfess.save();
             res.status(200).json({ message: "Confession saved successfully" })
         } catch (error) {

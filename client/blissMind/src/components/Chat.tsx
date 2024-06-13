@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 
 import { LuSend } from "react-icons/lu";
 import  Message  from "./subComponents/Messages";
+import { serverApi } from "../Auth/AuthProvider";
 
 export interface MessageType {
     text: string,
@@ -23,14 +24,18 @@ const Chat = () => {
         "How to meditate properly ?"
     ]
 
-    const handleSubmitMsg = () => {
-        console.log('yolo')
+    const handleSubmitMsg = async() => {
+        const data = await serverApi.post('/aichat', {prompt: message});
+        console.log(data)
     }
 
     useEffect(() => {
-        setTimeout(() => {
-            // setMessage(messageSeeder)
-        }, 5000)
+        const fetchMessages = async()=> {
+            const res = await serverApi.get('/aichat');
+            console.log(res)
+            setMessage(res.data.data);
+        }
+        fetchMessages();
     }, [])
 
     return (

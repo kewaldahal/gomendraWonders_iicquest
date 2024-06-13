@@ -18,6 +18,8 @@ const chatController = {
                 _id: { $in: conversationMessageId },
             });
 
+            console.log(messages)
+
             res.status(200).json({ data: messages });
 
         } catch (error) {
@@ -28,7 +30,9 @@ const chatController = {
         const userId = req.userId;
 
         try {
-            const { question } = req.body;
+            const { prompt } = req.body;
+            // console.log(prompt)
+
             let conversation = await Conversation.findOne({
                 userId
             });
@@ -37,10 +41,12 @@ const chatController = {
                     userId,
                 });
             }
-            const aiResponse = await generateText(question);
+            // const aiResponse = await generateText(question);
+            // console.log(aiResponse);
+            const aiResponse = "I am currently unavailable";
 
             const userMessage = new Message({
-                text: question,
+                text: prompt,
                 senderId: userId,
             });
             const savedUserMessage = await userMessage.save();
@@ -69,6 +75,7 @@ const chatController = {
             res.status(200).json({ messages: [savedUserMessage, savedAiMessage] })
 
         } catch (error) {
+            console.log(error)
             res.status(500).json({ message: error.message });
         }
 

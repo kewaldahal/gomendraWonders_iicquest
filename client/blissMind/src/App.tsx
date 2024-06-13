@@ -22,6 +22,7 @@ import { useAuth } from './Auth/AuthProvider.tsx';
 import React from 'react';
 import {CreateJournal} from "./components/subComponents/CreateJournal.tsx";
 import CreateBlog from "./pages/CreateBlog.tsx";
+import Footer from "./components/Footer.tsx";
 
 
 function App() {
@@ -80,6 +81,7 @@ function App() {
             </Routes>
             {/*{openModal && <ChatModal setOpenModal={setOpenModal}/>}*/}
             {/*<div className={`fixed p-5 text-3xl bg-gray-100 shadow-lg bottom-10 right-10 cursor-pointer rounded-full`} onClick={()=> setOpenModal(true)}><BiMessageSquareDetail/></div>*/}
+            <Footer/>
         </>
     )
 }

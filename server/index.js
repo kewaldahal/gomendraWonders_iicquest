@@ -1,5 +1,6 @@
 import express from 'express';
 import env from 'dotenv';
+import cors from 'cors';
 import cookieParser from 'cookie-parser';
 
 // route
@@ -13,7 +14,7 @@ import connectDB from './config/dbConfig.js';
 
 env.config();
 const app = express();
-
+app.use(cors());
 // middleware
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));

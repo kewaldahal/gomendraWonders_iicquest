@@ -24,6 +24,10 @@ const confessSchema = new Schema({
         type: Types.ObjectId,
         ref: "User",
     },
+    fullName: {
+        type: String,
+        require: true
+    },
 	description: {
 		type: String,
         require: true,
@@ -52,7 +56,8 @@ const confessSchema = new Schema({
             ref: "Comment"
         }
     ]
-});
+}, {timestamps: true}
+);
 
 const Comment = models.Comment || model("Comment", commentSchema);
 const Confess = models.Confess || model("Confess", confessSchema);

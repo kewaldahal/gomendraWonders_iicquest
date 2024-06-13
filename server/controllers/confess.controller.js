@@ -4,7 +4,7 @@ const confessController = {
     getConfessions: async (req, res) => {
         try {
             const data = await Confess.find();
-            if (data) return res.status(200).json({ message: "Data Fetched successfully" });
+            if (data) return res.status(200).json({data });
         } catch (error) {
             console.log(error);
             return res.status(500).json({ message: error.message });
@@ -20,11 +20,19 @@ const confessController = {
         }
     },
     postConfession: async (req, res) => {
-        const userId = req.userId;
+        // const userId = req.userId;
+        const {userId, fullName} = req;
 
         try {
+
+            // req.fullName = fullName;
+            // req.email = email;
+            // req.userId = userId;
+            // req.type = type;
+            // req.description = description;
+            //
             const { description, isanonymous} = req.body;
-            const newConfess = new Confess({ description, isanonymous, userId });
+            const newConfess = new Confess({ description, isanonymous, userId, fullName });
             await newConfess.save();
             res.status(200).json({ message: "Confession saved successfully" })
         } catch (error) {

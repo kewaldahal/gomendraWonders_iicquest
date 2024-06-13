@@ -4,8 +4,7 @@ import axios, { isAxiosError } from 'axios';
 // serverApi
 export const serverApi = axios.create({
   baseURL: 'http://localhost:8080',
-  timeout: 1000,
-  // withCredentials: true
+  withCredentials: true
 })
 
 interface User {
@@ -59,7 +58,7 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
     try {
       await serverApi.get('/auth/logout', {withCredentials: true});
       setUser(null);
-      
+
     } catch (error) {
       if (isAxiosError(error)){
         console.log(error.message);
@@ -68,9 +67,9 @@ const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
-      {children}
-    </AuthContext.Provider>
+      <AuthContext.Provider value={{ user, login, logout }}>
+        {children}
+      </AuthContext.Provider>
   );
 };
 

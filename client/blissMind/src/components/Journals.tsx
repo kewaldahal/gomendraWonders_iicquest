@@ -2,14 +2,16 @@ import JournalCard from "./JournalCard.tsx";
 import {AiOutlinePlus} from "react-icons/ai";
 import {useState} from "react";
 import {CreateJournal} from "./subComponents/CreateJournal.tsx";
+import {Link} from "react-router-dom";
 
 
 const Journals = () => {
     const [createJournal, setCreateJournal] = useState(false)
     return (
         <div className={`w-[900px] mx-auto]`}>
-            {createJournal && <CreateJournal setCreate={setCreateJournal}/>}
+
             <div>
+                <Link to={"/journal/create"}>
                 <div className={`flex gap-3 items-center mb-5`}>
                     <p className={`font-semibold`}>Recent Journals</p>
                     <button onClick={() => {
@@ -20,6 +22,7 @@ const Journals = () => {
                         Journal
                     </button>
                 </div>
+            </Link>
 
                 <div className={`flex flex-col gap-8 my-3`}>
                     <JournalCard/>

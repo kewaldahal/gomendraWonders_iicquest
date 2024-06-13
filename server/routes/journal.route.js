@@ -1,8 +1,9 @@
 import { Router } from "express";
 import journalController from "../controllers/journal.controller.js";
+import fetchuser from "../middleware/fetchUser.js";
 const router = Router();
 
-router.get('/', journalController.getJournals);
+router.get('/',fetchuser, journalController.getJournals);
 router.get('/:id',journalController.getSingleJournal);
 router.post('/',journalController.postJournal);
 router.patch('/:id',journalController.updateJournal);

@@ -2,6 +2,7 @@ import Hero from "../components/Hero.tsx";
 import Feelings from "../components/Feelings.tsx";
 import SessionsCards from "../components/SessionsCards.tsx";
 import BlogCards from "../components/BlogCards.tsx";
+import Subscription from "../components/Subscription.tsx";
 
 const Landing = () => {
     return (
@@ -9,6 +10,7 @@ const Landing = () => {
             <Hero/>
             <Feelings/>
             <SessionsCards/>
+            <Subscription/>
             <BlogCards/>
         </div>
     );

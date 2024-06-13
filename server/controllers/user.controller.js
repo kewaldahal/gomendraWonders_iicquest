@@ -33,7 +33,7 @@ const userController = {
 			await newUser.save();
 
 			const data = {
-				id: newUser._id,
+				userId: newUser._id,
 				fullName: newUser.fullName,
 				email: newUser.email,
 				type: newUser.type,
@@ -78,7 +78,7 @@ const userController = {
 			console.log(dbUser)
 
 			const data = {
-				id: dbUser._id,
+				userId: dbUser._id,
 				fullName: dbUser.fullName,
 				email: dbUser.email,
 				type: dbUser.type,

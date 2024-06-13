@@ -11,7 +11,7 @@ const ProfileDetails = () => {
                 <p className={`font-bold text-lg`}>{user?.fullName}</p>
                 <p className={`text-gray-600`}>{user?.email}</p>
                 <p className={`px-3 uppercase mt-1.5 font-semibold text-xs p-0.5 rounded-full bg-green-200 w-fit`}>{user?.type}</p>
-                <div className={`flex gap-3 mt-8 font-medium `}>
+                {user?.type == "student" && <div className={`flex gap-3 mt-8 font-medium `}>
                     <NavLink to={``}>
                         <p className={`/profile`}>My
                             Journals</p>
@@ -20,7 +20,17 @@ const ProfileDetails = () => {
                         <p className={`/profile/confessions`}>My
                             Confessions</p>
                     </NavLink>
-                </div>
+                </div>}
+                {user?.type == "professional" && <div className={`flex gap-3 mt-8 font-medium `}>
+                    <NavLink to={``}>
+                        <p className={`/profile`}>My
+                            Journals</p>
+                    </NavLink>
+                    <NavLink to={`confessions`}>
+                        <p className={`/profile/confessions`}>My
+                            Confessions</p>
+                    </NavLink>
+                </div>}
             </div>
         </div>
     );

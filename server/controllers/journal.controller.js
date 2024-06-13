@@ -32,8 +32,9 @@ const journalController = {
             const { description } = req.body;
             const newJournal = new Journal({ userId, description });
             await newJournal.save();
-
+            console.log("saved")
             res.status(200).json({ message: "Journal Created Successfully" });
+
         } catch (error) {
             res.status(500).json({ message: "Internal Error Occured!" });
         }

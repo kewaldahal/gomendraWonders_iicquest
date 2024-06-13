@@ -5,11 +5,11 @@ const JournalCard = () => {
         <div className={``}>
             <div className={`flex items-center gap-3`}>
                 <p className={`font-medium`}>{new Date().toDateString()}</p>
-                <button
-                    className={`flex items-center gap-2 px-2 border-2 border-blue-500 hover:bg-blue-100 transition text-sm font-semibold text-gray-700 rounded-full`}>
-                    <AiOutlineEdit/>Edit
-                    Journal
-                </button>
+                {/*<button*/}
+                {/*    className={`flex items-center gap-2 px-2 border-2 border-blue-500 hover:bg-blue-100 transition text-sm font-semibold text-gray-700 rounded-full`}>*/}
+                {/*    <AiOutlineEdit/>Edit*/}
+                {/*    Journal*/}
+                {/*</button>*/}
             </div>
             <p className={`font-medium cursor-pointer text-gray-800 line-clamp-3`}>Lorem ipsum dolor sit amet,
                 consectetur adipisicing

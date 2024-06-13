@@ -6,7 +6,7 @@ import { serverApi } from '../../Auth/AuthProvider';
 const CreateConfession = ({ setCreate }) => {
     const { user } = useAuth();
     const [confession, setConfession] = useState('');
-    const [isAnonymous, setIsAnonymous] = useState(false);
+    const [isanonymous, setIsAnonymous] = useState(false);
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
@@ -18,8 +18,8 @@ const CreateConfession = ({ setCreate }) => {
 
         try {
             const response = await serverApi.post('/confess/', {
-                confession,
-                isAnonymous,
+                description: confession,
+                isanonymous,
             });
 
             if (response.status === 200) {
@@ -61,7 +61,7 @@ const CreateConfession = ({ setCreate }) => {
                         <input
                             type="checkbox"
                             id="anonymous-post"
-                            checked={isAnonymous}
+                            checked={isanonymous}
                             onClick={() => setIsAnonymous((prev) => !prev)}
                             className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded cursor-pointer"
                         />

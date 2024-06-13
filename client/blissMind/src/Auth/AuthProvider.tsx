@@ -4,7 +4,6 @@ import axios, { isAxiosError } from 'axios';
 // serverApi
 export const serverApi = axios.create({
   baseURL: 'http://localhost:8080',
-  timeout: 1000,
   withCredentials: true
 })
 

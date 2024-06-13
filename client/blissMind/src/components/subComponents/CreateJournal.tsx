@@ -1,17 +1,18 @@
 import {FormEvent, useState} from "react";
+import {serverApi} from "../../Auth/AuthProvider.tsx";
 
-export const CreateJournal = ({setCreate}) => {
+export const CreateJournal = () => {
     const [description, setDescription] = useState("");
-    const handleSubmit = (e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         // handle submission
         e.preventDefault();
-
-
+        await serverApi.post("/journal", {description})
+        console.log("Added")
     }
 
     return (
         <>
-            <div onSubmit={handleSubmit} className={`bg-red-400 w-full  px-4 `}>
+            <div onSubmit={handleSubmit} className={` w-full mx-auto container my-10  px-4 `}>
                 <form className={`flex flex-col gap-5 w-full`}>
                     <div className={`flex flex-col justify-start`}>
                         <label className={`block text-xl font-medium text-gray-700`}>Description: </label>

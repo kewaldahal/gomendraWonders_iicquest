@@ -14,10 +14,8 @@ const Hero = () => {
                             life now!</p>
                     </div>
                     <button
-                        className={` w-fit bg-emerald-600 hover:bg-emerald-500 transition px-8 py-2 text-white font-medium mt-10 rounded`}>Set
-                        up your
-                        daily
-                        meditation
+                        className={` w-fit bg-emerald-600 hover:bg-emerald-500 transition px-8 py-2 text-white font-medium mt-10 rounded`}>
+                        Set Goals and start Feeling Better
                     </button>
                 </div>
 

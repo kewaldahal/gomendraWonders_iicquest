@@ -21,6 +21,7 @@ import UpdateConfession from "./components/subComponents/UpdateConfession.tsx";
 import { useAuth } from './Auth/AuthProvider.tsx';
 import React from 'react';
 import {CreateJournal} from "./components/subComponents/CreateJournal.tsx";
+import CreateBlog from "./pages/CreateBlog.tsx";
 
 
 function App() {
@@ -66,6 +67,7 @@ function App() {
                 <Route path="/blogs" element={<ProtectedRoute element={<Blogs />} />} />
                 <Route path="/edit/:id" element={<ProtectedRoute element={<UpdateConfession />} />} />
                 <Route path="/mygoals" element={<ProtectedRoute element={<Goals />} />} />
+                <Route path="/blog/create" element={<ProtectedRoute element={<CreateBlog />} />} />
                 <Route path="/goal/:id" element={<ProtectedRoute element={<GoalPage />} />} />
                 <Route path="/journal/create" element={<ProtectedRoute element={<CreateJournal />} />} />
                 <Route path="/session/:id" element={<ProtectedRoute element={<SessionPage />} />} />

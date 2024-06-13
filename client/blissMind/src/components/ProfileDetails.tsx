@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../Auth/AuthProvider";
+import {AiOutlinePlus} from "react-icons/ai";
 
 const ProfileDetails = () => {
     const { user } = useAuth();
@@ -16,19 +17,13 @@ const ProfileDetails = () => {
                         <p className={`/profile`}>My
                             Journals</p>
                     </NavLink>
-                    <NavLink to={`confessions`}>
-                        <p className={`/profile/confessions`}>My
-                            Confessions</p>
-                    </NavLink>
                 </div>}
                 {user?.type == "professional" && <div className={`flex gap-3 mt-8 font-medium `}>
-                    <NavLink to={``}>
-                        <p className={`/profile`}>My
-                            Journals</p>
-                    </NavLink>
-                    <NavLink to={`confessions`}>
-                        <p className={`/profile/confessions`}>My
-                            Confessions</p>
+                    <NavLink to={`/blog/create`}>
+                        <button
+                            className={`flex items-center gap-2 px-2 py-2 border-2 border-blue-500 hover:bg-blue-100 transition text-sm font-semibold text-gray-700 rounded-full`}>
+                            <AiOutlinePlus/>Create Blog
+                        </button>
                     </NavLink>
                 </div>}
             </div>

@@ -23,7 +23,7 @@ const Confession = () => {
                         navigate(`/edit/1`)
                         document.body.style.overflowY = 'scroll'
                     }}>
-                        <AiOutlineEdit className="cursor-pointer"/>
+                        <AiOutlineEdit size={`1.7em`} className="cursor-pointer"/>
                     </div>
                 </div>
                 <div>

@@ -1,7 +1,7 @@
 import {ChangeEvent, useState} from "react";
 import {Link} from "react-router-dom";
 
-const Login = () => {
+const Login = ({login}: {login: (email:string, password: string)=> void}) => {
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -18,6 +18,7 @@ const Login = () => {
 
     const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        login(formData.email, formData.password);
         // Handle submit logic here if needed
     };
 

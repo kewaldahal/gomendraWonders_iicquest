@@ -3,40 +3,41 @@ import bcrypt from "bcryptjs"
 import User from "../models/user.model.js"
 
 const userController = {
-    getUser: (req, res) => {
-        res.status(200).json({ message: "Working" })
-    },
+	getUser: (req, res) => {
+		const { userId,	fullName, email, type, description } = req;
+		res.status(200).json({ data: {userId, fullName, email, type, description}});
+	},
 
-    signUpUser: async (req, res) => {
-        const { type, fullName, email, password, age, gender, description } = req.body;
-        const hashedPassword = bcrypt.hashSync(password, 10);
-        console.log(req.body)
+	signUpUser: async (req, res) => {
+		const { type, fullName, email, password, age, gender, description } = req.body;
+		const hashedPassword = bcrypt.hashSync(password, 10);
+		console.log(req.body)
 
-        const dbUser = await User.findOne({ email });
-        if (dbUser) {
-            return res.status(403).json({
-                message: `User with ${dbUser.email} already exists`,
-            });
-        }
+		const dbUser = await User.findOne({ email });
+		if (dbUser) {
+			return res.status(403).json({
+				message: `User with ${dbUser.email} already exists`,
+			});
+		}
 
-        try {
-            const newUser = await User.create({
-                fullName,
-                email,
-                type,
-                age,
-                gender,
-                description,
-                password: hashedPassword,
-            });
-            await newUser.save();
+		try {
+			const newUser = await User.create({
+				fullName,
+				email,
+				type,
+				age,
+				gender,
+				description,
+				password: hashedPassword,
+			});
+			await newUser.save();
 
-            const data = {
+			const data = {
 				id: newUser._id,
 				fullName: newUser.fullName,
 				email: newUser.email,
-                type: newUser.type,
-                description: newUser.description
+				type: newUser.type,
+				description: newUser.description
 			};
 
 			const user_token = jwt.sign(data, process.env.JWT_SECRET, {
@@ -50,38 +51,38 @@ const userController = {
 				sameSite: "None"
 			});
 
-            return res.status(200).json({
-                message: `successfully created a user named ${fullName}`,
-            });
-        } catch (error) {
-            console.log(error);
-            return res.status(400).json({ message: "couldn't SignUp!" });
-        }
-    },
+			return res.status(200).json({
+				message: `successfully created a user named ${fullName}`,
+			});
+		} catch (error) {
+			console.log(error);
+			return res.status(400).json({ message: "couldn't SignUp!" });
+		}
+	},
 
-    loginUser: async(req, res) => {
-        const { email, password } = req.body;
+	loginUser: async (req, res) => {
+		const { email, password } = req.body;
 
-        try {
-			const dbUser = await User.findOne({email});
+		try {
+			const dbUser = await User.findOne({ email });
 			if (!dbUser) {
-				return res.status(403).json({message: "Invalid credentials provided"});
+				return res.status(403).json({ message: "Invalid credentials provided" });
 			}
 
 			// Check password
 			const isValidPassword = await bcrypt.compare(password, dbUser.password);
 			if (!isValidPassword) {
-				return res.status(403).json({message: "Invalid credentials provided"});
+				return res.status(403).json({ message: "Invalid credentials provided" });
 			}
 
-            console.log(dbUser)
+			console.log(dbUser)
 
 			const data = {
 				id: dbUser._id,
 				fullName: dbUser.fullName,
 				email: dbUser.email,
-                type: dbUser.type,
-                description: dbUser.description
+				type: dbUser.type,
+				description: dbUser.description
 			};
 
 			const user_token = jwt.sign(data, process.env.JWT_SECRET, {
@@ -95,21 +96,21 @@ const userController = {
 				sameSite: "None"
 			});
 
-			return res.status(200).json({message: "Successfully logged in", data});
+			return res.status(200).json({ message: "Successfully logged in", data });
 		} catch (err) {
 			console.error("Error during login", err);
-			return res.status(500).json({message: "Internal server error"});
+			return res.status(500).json({ message: "Internal server error" });
 		}
-    },
+	},
 
-    logOutUser: async(req, res)=> {
-        try {
+	logOutUser: async (req, res) => {
+		try {
 			res.clearCookie("user_token");
-			return res.status(200).json({message: "successfully cleared user session"});
+			return res.status(200).json({ message: "successfully cleared user session" });
 		} catch (error) {
-			return res.status(400).json({message: "Error! Couldn't Logout"});
+			return res.status(400).json({ message: "Error! Couldn't Logout" });
 		}
-    }
+	}
 }
 
 export default userController;

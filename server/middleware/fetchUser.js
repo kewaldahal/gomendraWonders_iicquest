@@ -11,12 +11,14 @@ const fetchuser = (req, res, next) => {
 		}
 
 		const data = jwt.verify(user_token, process.env.JWT_SECRET);
-		const {username, id, email, type} = data;
+		const {fullName, userId, email, type, description} = data;
+		console.log(data);
 
-		req.username = username;
+		req.fullName = fullName;
 		req.email = email;
-        req.userId = id;
+        req.userId = userId;
         req.type = type;
+		req.description = description;
 
 	} catch (error) {
 		console.log(error)

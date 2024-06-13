@@ -1,9 +1,27 @@
-import {AiOutlineComment, AiOutlineHeart, AiOutlineSend} from "react-icons/ai";
+import {AiOutlineComment, AiOutlineEdit, AiOutlineHeart, AiOutlineSend} from "react-icons/ai";
 import Comment from "./Comment.tsx";
 import {IoHeartDislikeOutline} from "react-icons/io5";
+import { useState } from "react";
+import UpdateConfession from "./subComponents/UpdateConfession.tsx";
 
 const Confession = () => {
+
+    const[edit,setEdit] = useState(false)
+
     return (
+        <>
+        {edit&&<div className={`py-20 fixed inset-0 w-full pb-8 overflow-y-scroll backdrop-blur h-full bg-gray-600/30`}>
+                    <div className={`flex justify-end sticky top-0`}>
+                        <div onClick={() => {
+                            // setS
+                            document.body.style.overflowY = 'auto'
+                        }} className={`p-3 shadow cursor-pointer backdrop-blur m-3 rounded-full text-2xl bg-white`}>
+                        
+                        </div>
+
+                    </div>
+                    <UpdateConfession/>
+                </div>}
         <div className={`bg-gray-50 max-w-[900px] p-5 rounded container mx-auto`}>
             <div className={`flex justify-between`}>
                 <div className={`flex gap-3.5 items-center`}>
@@ -14,7 +32,9 @@ const Confession = () => {
                         <p className={`text-sm font-semibold text-gray-500`}>an hour ago</p>
                     </div>
                 </div>
-
+<div>
+                        <AiOutlineEdit onClick={()=>setEdit(true)} size={`1.3em`} className="cursor-pointer" size={`1.2em`}/>
+                    </div>
             </div>
             <div>
                 <p className={` text-gray-700`}>I need to confess something that’s
@@ -121,6 +141,7 @@ const Confession = () => {
             </div>
 
         </div>
+        </>
     );
 };
 

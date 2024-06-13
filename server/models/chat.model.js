@@ -6,14 +6,10 @@ const messageSchema = new Schema(
 		text: {
 			type: String,
 			default: "",
-		},
-		seen: {
-			type: Boolean,
-			default: false,
+			require: true
 		},
 		senderId: {
 			type: Types.ObjectId,
-			required: true,
 			ref: "User",
 		},
 	},
@@ -22,17 +18,7 @@ const messageSchema = new Schema(
 
 const conversationSchema = new Schema(
 	{
-		type: {
-			type: String,
-			required: true,
-            enum: ["ai", "professional"],
-		},
-		senderId: {
-			type: Types.ObjectId,
-			required: true,
-			ref: "User",
-		},
-		receiverId: {
+		userId: {
 			type: Types.ObjectId,
 			required: true,
 			ref: "User",

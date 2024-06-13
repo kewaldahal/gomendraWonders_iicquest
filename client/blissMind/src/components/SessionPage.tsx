@@ -1,43 +1,26 @@
+import {useParams} from 'react-router-dom';
 import {useState} from 'react';
 import {IoIosArrowBack, IoIosArrowForward} from 'react-icons/io';
+import {Tutorial, tutorials} from '../utils/tutorials';
 import SessionDetailComponent from "./SessionDetailComponent.tsx";
 
-const SessionPage = () => {
-    const [currentStepIndex, setCurrentStepIndex] = useState(0);
+interface ParamTypes {
+    id: string;
+}
 
-    const stressManagementTutorial = {
-        title: "Manage Stress: A Student's Guide",
-        category: "Stress Relief",
-        steps: [
-            {
-                title: "Identify Your Triggers",
-                description: "Start by identifying what causes you stress. This can be upcoming exams, deadlines, or personal issues. Understanding what triggers your stress is the first step to managing it."
-            },
-            {
-                title: "Practice Deep Breathing",
-                description: "Learn and practice deep breathing techniques. Try inhaling for four counts, holding for seven, and exhaling for eight. This method helps reduce stress by increasing the amount of oxygen in your blood."
-            },
-            {
-                title: "Establish a Routine",
-                description: "Create a daily routine that includes time for study, activities, and relaxation. Having a structured day can help manage anxiety and stress by providing predictability and a sense of control."
-            },
-            {
-                title: "Exercise Regularly",
-                description: "Physical activity can significantly reduce stress. Aim for at least 30 minutes of moderate exercise, like brisk walking or yoga, most days of the week."
-            },
-            {
-                title: "Connect with Friends",
-                description: "Social support is vital for managing stress. Spend time with friends or family who uplift you and make you feel supported."
-            },
-            {
-                title: "Seek Professional Help",
-                description: "If stress becomes overwhelming, consider seeking help from a counselor or therapist who can provide professional support and strategies."
-            }
-        ]
-    };
+const SessionPage: React.FC = () => {
+    const {id} = useParams<ParamTypes>();
+    const tutorial: Tutorial | undefined = tutorials.find(t => t.id === parseInt(id));
+
+    const [currentStepIndex, setCurrentStepIndex] = useState(0);
+    const [showDetails, setShowDetails] = useState(false);
+
+    if (!tutorial) {
+        return <div>Tutorial not found</div>;
+    }
 
     const handleNext = () => {
-        if (currentStepIndex < stressManagementTutorial.steps.length - 1) {
+        if (currentStepIndex < tutorial.steps.length - 1) {
             setCurrentStepIndex(currentStepIndex + 1);
         }
     };
@@ -48,25 +31,52 @@ const SessionPage = () => {
         }
     };
 
+    const toggleDetails = () => {
+        setShowDetails(!showDetails);
+    };
+
     return (
-        <div className={` bg-amber-100 min-h-[80vh]`}>
-            <div className={`container mx-auto py-10`}>
-                <div className={`flex justify-between text-3xl items-center`}>
-                    <button onClick={handlePrev} className={`bg-white shadow-xl p-4 rounded-full`}><IoIosArrowBack/>
+        <div className="bg-white min-h-[80vh]">
+            <div className="container mx-auto py-10">
+                <div className="flex justify-between text-3xl items-center mb-4">
+                    <button onClick={handlePrev} className="bg-white shadow-xl p-4 rounded-full"><IoIosArrowBack/>
                     </button>
-                    <p className={`font-semibold text-3xl  text-center `}>{stressManagementTutorial.title}:
-                        Step:{currentStepIndex + 1}</p>
-                    <button onClick={handleNext} className={`bg-white shadow-xl p-4 rounded-full`}><IoIosArrowForward/>
+                    <p className="font-semibold text-3xl text-center">{tutorial.title}:
+                        Step {currentStepIndex + 1}/{tutorial.steps.length}</p>
+                    <button onClick={handleNext} className="bg-white shadow-xl p-4 rounded-full"><IoIosArrowForward/>
+                    </button>
+                </div>
+                <SessionDetailComponent step={tutorial.steps[currentStepIndex]}/>
+
+                <div className="mt-6 flex justify-center">
+                    <button
+                        onClick={toggleDetails}
+                        className="bg-green-600 text-white px-4 py-2 rounded"
+                    >
+                        {showDetails ? 'Hide Details' : 'Show Details'}
                     </button>
                 </div>
 
-                <SessionDetailComponent step={stressManagementTutorial.steps[currentStepIndex]}/>
-
+                {showDetails && (
+                    <div className="mt-10">
+                        <h2 className="text-2xl font-bold mb-4">Full Details</h2>
+                        <div>
+                            <p className="text-xl font-semibold">Category: {tutorial.category}</p>
+                            <h3 className="text-xl font-semibold mt-4">Steps:</h3>
+                            <ul className="list-disc ml-6">
+                                {tutorial.steps.map((step, index) => (
+                                    <li key={index} className="mb-2">
+                                        <h4 className="font-semibold">{step.title}</h4>
+                                        <p>{step.description}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
 };
 
 export default SessionPage;
-
-

@@ -7,7 +7,6 @@ import Chat from "./components/Chat.tsx";
 import NotFound from "./components/NotFound.tsx";
 import Confessions from "./components/Confessions.tsx";
 import ProfilePage from "./pages/ProfilePage.tsx";
-import SessionsCards from "./components/SessionsCards.tsx";
 import Journals from "./components/Journals.tsx";
 import Login from "./pages/Login.tsx";
 import Signup from "./pages/Signup.tsx";
@@ -15,6 +14,7 @@ import SessionPage from "./components/SessionPage.tsx";
 import Goals from "./components/Goals.tsx";
 import GoalPage from "./components/GoalPage.tsx";
 import Blogs from "./pages/Blog.tsx";
+import UpdateConfession from "./components/subComponents/UpdateConfession.tsx";
 // import {BiMessageSquareDetail} from "react-icons/bi";
 // import {useState} from "react";
 
@@ -31,6 +31,7 @@ function App() {
                 <Route path="/login" element={<Login/>}/>
                 <Route path="/blogs" element={<Blogs/>}/>
                 <Route path="/signup" element={<Signup/>}/>
+                <Route path="/edit/:id" element={<UpdateConfession/>}/>
                 <Route path="/mygoals" element={<Goals/>}/>
                 <Route path="/goal/:id" element={<GoalPage/>}/>
                 <Route path="/session/:id" element={<SessionPage/>}/>

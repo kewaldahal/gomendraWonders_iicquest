@@ -9,7 +9,7 @@ const Signup = () => {
         fullName: "",
         gender: "",
         age: "",
-        type: ""
+        type: "student"
     });
 
     const navigate = useNavigate();
@@ -109,8 +109,8 @@ const Signup = () => {
                     </div>
                     <div className={`flex flex-col`}>
                         <label className={`text-sm font-medium`}>User Type:</label>
-                        <select name="type" value={formData.type} onChange={handleChange} className={`border border-gray-300 p-2 rounded outline-none`} required>
-                            <option selected value="student">Student</option>
+                        <select defaultValue={"student"} name="type" value={formData.type} onChange={handleChange} className={`border border-gray-300 p-2 rounded outline-none`} required>
+                            <option value="student">Student</option>
                             <option value="professional">Professional</option>
                         </select>
                     </div>
